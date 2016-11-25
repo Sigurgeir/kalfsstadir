@@ -1,0 +1,39 @@
+extends layout
+
+block content
+
+  div.container
+   div.horseContainer
+    h2.center=name
+    div.horsePic.col-xs-12.col-lg-6.col-md-6
+      if typeof horse.mynd_ref !== 'undefined' && horse.mynd_ref !==null
+        img(src=`/images/${horse.mynd_ref}` title=`${horse.name}` onerror="this.src='/images/fallback.jpg'" alt=`Picture of ${horse.name} from Kalfsstadir`)
+      else
+        a(href=`horse/${horse.id}` title=`${horse.name}`)
+          img(src='/images/fallback.jpg' title=`${horse.name}` alt=`No picture available`)
+    div.horseTxt.col-xs-12.col-lg-6.col-md-6
+      if horse.modir.length > 2 && horse.fadir.length>2 && horse.modir !== 'undefined' && horse.fadir !== 'undefined'
+        p  #{horse.name} came from breeding #{horse.modir} and #{horse.fadir}.
+      p #{horse.lysing}
+      if horse.domur>0
+        p #{horse.name} has received #{horse.domur} in total grade.
+
+    div.commentSect.col-xs-12.col-lg-12.col-md-12
+      h3.center Give us your opinion
+      form(method="post" action=`${horse.id}`)
+        div.commenttator
+          input.form-group(type="text" name="name" id = "name" placeholder="Name")
+        div.commentText
+          textarea.form-control.form-group(name="data" id="data" placeholder="Write your message here")
+        button(type="submit" class="btn btn-success btn-lg nytt")
+          span.glyphicon.glyphicon-plus(aria-hidden="true") Submit
+      if comments.length>0
+        div.commentContainer
+          for comment in comments
+            div.comment
+              h3.clean #{comment.name}
+              p #{comment.data}
+      else
+        h3.clean Be the first to write a comment on #{horse.name}
+
+//- ATH: Hvernig aetlum vid ad dila vid missing gogn? A lika vid um t.d valmynd

@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    title= title
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header
+      div.page-header
+      h1= title
+      nav.navbar.navbar-static-top
+        div.container-fluid
+          div.navbar-header
+            ul.nav.navbar-nav
+              li
+                a(href="/valmynd" title="Our horses" alt="Our horses") Meet our horses
+              li
+                a(href="/aboutUs" title="About us" alt="About us") About us
+              li
+                a(href="/" title="Front page" alt="Front page") Home
+
+    main
+    div.container-full
+      div.row
+        block content
+
+    div.container-full
+      div.row
+        footer.col-xs-12.col-lg-12.col-md-12
+          div.contactUs
+            p
+              a(href="mailto:sio46@hi.is", title="Email us" alt="Email us") Email us at systa@holar.is
+            p Or give us a call (+354) 8930824
+          div.socialMedia
+            div.twitter
+            div.facebook
